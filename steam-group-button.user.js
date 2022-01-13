@@ -1,20 +1,18 @@
 // ==UserScript==
 // @name         Steam官方组按钮
 // @namespace    https://github.com/lxfly2000/steam-group-button
-// @version      1.0.1
+// @version      1.0.2
 // @updateURL    https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @downloadURL  https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @description  在Steam商店页和社区页添加官方组按钮
 // @author       lxfly2000
-// @match        *://steamcommunity.com/app/*
-// @match        *://store.steampowered.com/app/*
+// @match        *://steamcommunity.com/*
+// @match        *://store.steampowered.com/*
 // @icon         https://store.steampowered.com/favicon.ico
 // @grant        none
 // ==/UserScript==
 
-(function() {
-    'use strict';
-
+function SteamGroupButton_AddButton(){
     var btns=document.getElementsByClassName("btnv6_blue_hoverfade");
     var rapp=new RegExp("(steamcommunity|store.steampowered).com/app/([0-9]+)","i");
     for (const itbtn of btns) {
@@ -28,4 +26,29 @@
             break;
         }
     }
+}
+
+function SteamGroupButton_AddGameAvatarsOption(){
+    var adom=document.createElement("a");
+    adom.className="popup_menu_item";
+    adom.href=location.protocol+"//steamcommunity.com/actions/GameAvatars/";
+    adom.textContent="修改头像";
+    var dp=document.getElementById("account_dropdown");
+    if(dp===undefined){
+        return;
+    }
+    var mp=dp.getElementsByClassName("popup_menu");
+    if(mp.length===0){
+        return;
+    }
+    mp[0].insertBefore(adom,mp[0].firstElementChild);
+}
+
+(function() {
+    'use strict';
+
+    if(/^\/app/.test(location.pathname)){
+        SteamGroupButton_AddButton();
+    }
+    SteamGroupButton_AddGameAvatarsOption();
 })();
