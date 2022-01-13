@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam官方组按钮
 // @namespace    https://github.com/lxfly2000/steam-group-button
-// @version      1.0
+// @version      1.0.1
 // @updateURL    https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @downloadURL  https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @description  在Steam商店页和社区页添加官方组按钮
@@ -21,7 +21,7 @@
         if(itbtn.href!==undefined&&rapp.test(itbtn.href)){
             var appid=itbtn.href.match(rapp)[2];
             var newNode=itbtn.cloneNode(true);
-            newNode.href=location.protocol+"//steamcommunity.com/app/"+appid;
+            newNode.href=location.protocol+"//steamcommunity.com/games/"+appid;
             newNode.innerHTML="<span>官方组</span>";
             itbtn.parentElement.insertBefore(newNode,itbtn);
             itbtn.parentElement.insertBefore(document.createTextNode(" "),itbtn);
