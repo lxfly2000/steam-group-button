@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam官方组按钮
 // @namespace    https://github.com/lxfly2000/steam-group-button
-// @version      1.0.2
+// @version      1.1
 // @updateURL    https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @downloadURL  https://github.com/lxfly2000/steam-group-button/raw/master/steam-group-button.user.js
 // @description  在Steam商店页和社区页添加官方组按钮
@@ -34,7 +34,7 @@ function SteamGroupButton_AddGameAvatarsOption(){
     adom.href=location.protocol+"//steamcommunity.com/actions/GameAvatars/";
     adom.textContent="修改头像";
     var dp=document.getElementById("account_dropdown");
-    if(dp===undefined){
+    if(dp===undefined||dp===null){
         return;
     }
     var mp=dp.getElementsByClassName("popup_menu");
